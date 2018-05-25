@@ -1,5 +1,5 @@
 /**
- * @file astar.c 
+ * @file main.c 
  * A Star pathfinding simulation
  * 
  * @author Jonas Wilkens
@@ -18,9 +18,9 @@ extern int field_refs;
  *
  * @param stream Output stream.
  */
-static void printUsage( FILE * stream );
+static void print_usage( FILE * stream );
 
-static void printUsage( FILE * stream ) {
+static void print_usage( FILE * stream ) {
 	fprintf(stream, "USAGE:  astar SIZE SRC DST [BLOCK ...]\n");
 	fprintf(stream, "            SIZE\t- INTEGERxINTEGER.\n");
 	fprintf(stream, "            SRC\t- INTEGER,INTEGER. (Starting from upper left)\n");
@@ -60,7 +60,7 @@ int main( int argc, char* argv[] ) {
 	else {
 		/* Help option */
 		if( argc == 2 && strcmp(argv[1], "-h") == 0 ) {
-			printUsage(stdout);
+			print_usage(stdout);
 		}
 		
 		/* Creating the Field */
@@ -114,8 +114,8 @@ int main( int argc, char* argv[] ) {
 	}
 
 	if (error) {
-		printError(error);
-		printUsage(stderr);
+		print_error(error);
+		print_usage(stderr);
 	}
 
 	return error;

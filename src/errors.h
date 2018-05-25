@@ -25,6 +25,6 @@ typedef enum Error Error;
  *
  * @param error The error that should be printed.
  */
-void printError( Error error );
+void print_error( Error error );
 
 #endif

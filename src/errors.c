@@ -9,7 +9,7 @@
 
 #include "errors.h"
 
-void printError( Error error ) {
+void print_error( Error error ) {
 	switch( error ) {
 		case ERR_NULL: 
 			break;
