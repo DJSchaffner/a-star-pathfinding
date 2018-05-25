@@ -22,9 +22,9 @@ static void print_usage( FILE * stream );
 
 static void print_usage( FILE * stream ) {
 	fprintf(stream, "USAGE:  astar SIZE SRC DST [BLOCK ...]\n");
-	fprintf(stream, "            SIZE\t- INTEGERxINTEGER.\n");
-	fprintf(stream, "            SRC\t- INTEGER,INTEGER. (Starting from upper left)\n");
-	fprintf(stream, "            DST\t- INTEGER,INTEGER. (Starting from upper left)\n");
+	fprintf(stream, "            SIZE \t- INTEGERxINTEGER.\n");
+	fprintf(stream, "            SRC  \t- INTEGER,INTEGER. (Starting from upper left)\n");
+	fprintf(stream, "            DST  \t- INTEGER,INTEGER. (Starting from upper left)\n");
 	fprintf(stream, "            BLOCK\t- INTEGER,INTEGER. (Starting from upper left)\n");
 	fprintf(stream, "            or: astar -h -> print this Usage.\n");
 	fprintf(stream, "\n");
