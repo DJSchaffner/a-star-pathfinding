@@ -9,8 +9,8 @@
 
 #include "errors.h"
 
-void print_error( Error error ) {
-	switch( error ) {
+void print_error (Error error) {
+	switch (error) {
 		case ERR_NULL: 
 			break;
 		case ERR_WRONG_ARG_COUNT:

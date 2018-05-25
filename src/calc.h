@@ -5,7 +5,7 @@
  * @file calc.h
  * A Star pathfinding simulation
  * 
- * @author Jonas Wilkens
+ * @author DJSchaffner
  */
  
 #include "library.h"
@@ -61,7 +61,7 @@ Field field_empty();
  *
  * @return Boolean.
  */
-int info_inbounds( Field field, Info e );
+int info_inbounds (Field field, Info e);
 
 /**
  * Checks if a point is within given boundaries.
@@ -72,7 +72,7 @@ int info_inbounds( Field field, Info e );
  *
  * @return boolean.
  */
-int point_inbounds( Point p, int rows, int cols );
+int point_inbounds (Point p, int rows, int cols);
 
 /**
  * Initialize a Field.
@@ -82,7 +82,7 @@ int point_inbounds( Point p, int rows, int cols );
  *
  * @return The initialized field.
  */
-Field field_init( int rows, int cols, Point src, Point dst , Error * error );
+Field field_init (int rows, int cols, Point src, Point dst , Error * error);
 
 /**
  * Calculate the best route from src to dst of a Field.
@@ -92,7 +92,7 @@ Field field_init( int rows, int cols, Point src, Point dst , Error * error );
  *
  * @return The calculated Field.
  */
-Field field_calc( Field field, Error* error );
+Field field_calc (Field field, Error* error);
 
 /**
  * Initialize a library for a field.
@@ -101,7 +101,7 @@ Field field_calc( Field field, Error* error );
  *
  * @return The initializied Library.
  */
-Library field_libInit( Field field );
+Library field_libInit (Field field);
 
 /**
  * Paint the final path from src to dst in a field based on a final library.
@@ -111,7 +111,7 @@ Library field_libInit( Field field );
  *
  * @return The modified field.
  */
-Field field_paintPath( Field field, Library lib );
+Field field_paintPath (Field field, Library lib);
 
 /**
  * Set a cell in a field to be blocked.
@@ -121,14 +121,14 @@ Field field_paintPath( Field field, Library lib );
  *
  * @return The modified field.
  */
-Field field_addBlock( Field field, Point p, Error * error );
+Field field_addBlock (Field field, Point p, Error * error);
 
 /**
  * Deletes an existing Field.
  *
  * @return Empty Field.
  */
-Field field_clear( Field field );
+Field field_clear (Field field);
 
 /**
  * Prints the contents of a Field to stdout.
@@ -136,7 +136,7 @@ Field field_clear( Field field );
  * @param rows The rows of the field to be printed.
  * @param cols The colums of the field to be printed.
  */
-void field_print( Field field );
+void field_print (Field field);
 
 /**
  * Add all neighbors of the current location, to the library.
@@ -147,6 +147,6 @@ void field_print( Field field );
  *
  * @return The Library with the added neighbors.
  */
-Library field_addNeighbors( Field field, Library lib, Info e );
+Library field_addNeighbors (Field field, Library lib, Info e);
 
 #endif

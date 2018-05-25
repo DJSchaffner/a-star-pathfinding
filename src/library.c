@@ -2,7 +2,7 @@
  * @file library.c
  * A Star pathfinding simulation
  * 
- * @author Jonas Wilkens
+ * @author DJSchaffner
  */
 
 #include <stdlib.h>
@@ -21,14 +21,14 @@
  *
  * @return -1(smaller), 0(equal), 1(greater)
  */
-int info_compare( Info e1, Info e2 ) {
-	if( e1.total < e2.total ) {
+int info_compare (Info e1, Info e2)  {
+	if (e1.total < e2.total)  {
 		return -1;
 	}
-	if( e1.total == e2.total ) {
+	if (e1.total == e2.total)  {
 		return 0;
 	}
-	if( e1.total > e2.total ) {
+	if (e1.total > e2.total)  {
 		return 1;
 	}
 	
@@ -44,35 +44,35 @@ int info_compare( Info e1, Info e2 ) {
  *
  * @return Boolean.
  */
-int info_isEqual( Info e1, Info e2 ) {
-	return( e1.coord.x == e2.coord.x && e1.coord.y == e2.coord.y );
+int info_isEqual (Info e1, Info e2) {
+	return (e1.coord.x == e2.coord.x && e1.coord.y == e2.coord.y );
 }
 
 Library library_empty() {
 	return NULL;
 }
 
-Info head( Library lib ) {
-	assert(!library_isEmpty(lib));
+Info head (Library lib) {
+	assert (!library_isEmpty(lib));
 	
 	return lib->info;
 }
 
-Library tail( Library lib ) {
-	assert(!library_isEmpty(lib));
+Library tail (Library lib) {
+	assert (!library_isEmpty(lib));
 	
 	return lib->next;
 }
 
-int library_isEmpty( Library lib ) {
+int library_isEmpty (Library lib) {
 	return lib == library_empty();
 }
 
-Library library_removeMin( Library lib ) {
-	assert( !library_isEmpty(lib) ); {
+Library library_removeMin (Library lib) {
+	assert (!library_isEmpty(lib) ); {
 		Library res = library_empty();
 	
-		if( !library_isEmpty(lib) ) {
+		if (!library_isEmpty(lib)) {
 			res = tail(lib);
 			free(lib);
 		}	
@@ -81,10 +81,10 @@ Library library_removeMin( Library lib ) {
 	}
 }
 
-Library library_cons( Library lib, Info e ) {
+Library library_cons (Library lib, Info e) {
 	Library res = library_empty();
 	
-	if( !(res = malloc(sizeof(*lib))) ) {
+	if (!(res = malloc(sizeof(*lib)))) {
 		exit(ERR_OUT_OF_MEMORY);
 	}
 	
@@ -94,15 +94,15 @@ Library library_cons( Library lib, Info e ) {
 	return res;
 }
 
-Library library_insert( Library lib, Info e ) {
-	if( library_contains(lib, e) ) {
+Library library_insert (Library lib, Info e) {
+	if (library_contains(lib, e)) {
 		return library_update(lib, e);
 	}
 	else {
-		if( (library_isEmpty(lib) || info_compare(e, head(lib)) <= 0) ) {
-			return library_cons( lib, e );
+		if ((library_isEmpty(lib) || info_compare(e, head(lib)) <= 0)) {
+			return library_cons (lib, e );
 		}
-		else if( info_compare(e, head(lib)) > 0 ) {
+		else if (info_compare(e, head(lib)) > 0) {
 			lib->next = library_insert(lib->next, e);
 		}
 	}	
@@ -110,13 +110,13 @@ Library library_insert( Library lib, Info e ) {
 	return lib;
 }
 
-Library library_update( Library lib, Info e ) {
-	if( library_isEmpty(lib) ) {
+Library library_update (Library lib, Info e) {
+	if (library_isEmpty(lib)) {
 		return lib;
 	}
 	
-	if( info_isEqual(head(lib), e) ) {
-		if( info_compare(e, head(lib)) == -1 ) {
+	if (info_isEqual(head(lib), e)) {
+		if (info_compare(e, head(lib)) == -1) {
 			lib = library_removeMin(lib);
 			lib = library_insert(lib, e);
 			
@@ -128,8 +128,8 @@ Library library_update( Library lib, Info e ) {
 	return lib;
 }
 
-int library_contains( Library lib, Info e ) {
-	if( library_isEmpty(lib) ) {
+int library_contains (Library lib, Info e) {
+	if (library_isEmpty(lib)) {
 		return 0;
 	}
 	else {
@@ -137,24 +137,24 @@ int library_contains( Library lib, Info e ) {
 	}
 }
 
-Info library_getEntry( Library lib, Point p ) {
+Info library_getEntry (Library lib, Point p) {
 	Info e = {0};
 	
 	/* Return <invalid> info */
-	if( library_isEmpty(lib) ) {
+	if (library_isEmpty(lib)) {
 		return e;
 	}
 	
 	e.coord = p;
-	if( info_isEqual(head(lib), e) ) {
+	if (info_isEqual(head(lib), e)) {
 		return head(lib);
 	}
 	
-	return library_getEntry( tail(lib), p );
+	return library_getEntry (tail(lib), p);
 }
 
-Library library_clear( Library lib ) {	
-	if( !library_isEmpty(lib) ) {
+Library library_clear (Library lib) {	
+	if (!library_isEmpty(lib)) {
 		lib->next = library_clear(lib->next);
 		free(lib);
 	}
@@ -162,11 +162,11 @@ Library library_clear( Library lib ) {
 	return library_empty();
 }
 
-void library_print( Library lib ) {
-	if( !library_isEmpty(lib) ) {
+void library_print (Library lib) {
+	if (!library_isEmpty(lib)) {
 		printf("[%d,%d,%d, PREV[%d, %d]]\n", head(lib).coord.x, head(lib).coord.y, head(lib).total, head(lib).prev.x, head(lib).prev.y);
 		
-		if( !library_isEmpty(tail(lib)) ) {
+		if (!library_isEmpty(tail(lib))) {
 			library_print(tail(lib));
 		} 	
 	}
