@@ -2,7 +2,7 @@
  * @file errors.c
  * A Star pathfinding simulation
  * 
- * @author Jonas Wilkens
+ * @author DJSchaffner
  */
  
 #include <stdio.h>
