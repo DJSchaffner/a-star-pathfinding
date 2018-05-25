@@ -1,20 +1,31 @@
-CC = gcc
-CFLAGS = -c -Wall Wextra
+CC := gcc
+CFLAGS := -c -Wall -Wextra
 
-SRC		= $(shell find . -type f -name '*.cpp')
-OBJ		= $(SRC:%.c=%.o)
-BIN		= astar
+# Folders
+SRCDIR 	:= src
+OBJDIR	:= obj
 
-.PHONY: all clean 
+SRC			:= $(shell find $(SRCDIR) -type f -name '*.c')
+OBJ			:= $(patsubst $(SRCDIR)/%, $(OBJDIR)/%, $(SRC:.c=.o))
+
+# Output Name
+BIN			:= astar
+
+.PHONY: all clean directories
 default: all
 
-all: $(BIN)
+all: directories $(BIN)
+
+directories:
+	@mkdir -p $(OBJDIR)
 
 $(BIN) : $(OBJ)
-	$(CC) -o astar $(OBJ)
+	$(CC) -o $(BIN) $(OBJ)
 	
-%.o: %.c
-	$(CC) $(CFLAGS) $<
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 	
 clean: 
-	rm -f $(BIN) $(OBJ) $(BIN).exe.stackdump
+	rm -f $(BIN) 
+	rm -rf $(OBJDIR)
+	rm -f $(BIN).exe.stackdump
