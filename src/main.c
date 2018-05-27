@@ -29,7 +29,7 @@ static void print_usage(FILE *stream) {
           "            DST  \t- INTEGER,INTEGER. (Starting from upper left)\n");
   fprintf(stream,
           "            BLOCK\t- INTEGER,INTEGER. (Starting from upper left)\n");
-  fprintf(stream, "            or: astar -h -> print this Usage.\n");
+  fprintf(stream, "            or: astar -h or --help -> print this Usage.\n");
   fprintf(stream, "\n");
   fprintf(stream, "        Colors:\n");
   fprintf(stream, BLUE "            BLUE:\tDestination\n");
