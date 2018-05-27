@@ -4,42 +4,42 @@
 /**
  * @file library.h
  * A Star pathfinding simulation
- * 
+ *
  * @author DJSchaffner
  */
- 
-#define INFOX(n) n.coord.x 
+
+#define INFOX(n) n.coord.x
 #define INFOY(n) n.coord.y
 #define INFOVALID(n) n.valid
 #define INFOTRAVEL(n) n.travel
 #define INFOTOTAL(n) n.total
- 
- typedef struct Point {
-	int x;
-	int y;
+
+typedef struct Point {
+  int x;
+  int y;
 } Point;
 
 typedef struct Info {
-	Point coord;
-	int valid;	
-	int travel;
-	int total;
-	Point prev;
+  Point coord;
+  int valid;
+  int travel;
+  int total;
+  Point prev;
 } Info;
 
 typedef struct Node *Library;
 
-struct Node {	
-	Info info;
-	Library next;
+struct Node {
+  Info info;
+  Library next;
 };
 
 /**
  * Creates an empty Library.
  *
  * @return Empty Library.
- */ 
-Library library_empty ();
+ */
+Library library_empty();
 
 /**
  * Gets the Info of a Library.
@@ -48,7 +48,7 @@ Library library_empty ();
  *
  * @return Info.
  */
-Info head (Library lib);
+Info head(Library lib);
 
 /**
  * Gets the next element of a Library.
@@ -57,7 +57,7 @@ Info head (Library lib);
  *
  * @return Next Library.
  */
-Library tail (Library lib);
+Library tail(Library lib);
 
 /**
  * Checks if library is empty.
@@ -66,7 +66,7 @@ Library tail (Library lib);
  *
  * @return Boolean.
  */
-int library_isEmpty (Library lib);
+int library_isEmpty(Library lib);
 
 /**
  * Inserts e into the library lib.
@@ -76,7 +76,7 @@ int library_isEmpty (Library lib);
  *
  * @return The modified Library.
  */
-Library library_insert (Library lib, Info e);
+Library library_insert(Library lib, Info e);
 
 /**
  * Updates e in the library if it is the same Point with a lower total value.
@@ -86,7 +86,7 @@ Library library_insert (Library lib, Info e);
  *
  * @return The modified Library.
  */
-Library library_update (Library lib, Info e);
+Library library_update(Library lib, Info e);
 
 /**
  * Removes the current min from lib.
@@ -95,7 +95,7 @@ Library library_update (Library lib, Info e);
  *
  * @return The modified Library.
  */
-Library library_removeMin (Library lib);
+Library library_removeMin(Library lib);
 
 /**
  * Checks if e is contained in lib (Only the coordinates!).
@@ -105,7 +105,7 @@ Library library_removeMin (Library lib);
  *
  * @return Boolean.
  */
-int library_contains (Library lib, Info e);
+int library_contains(Library lib, Info e);
 
 /**
  * Frees the entire library.
@@ -114,7 +114,7 @@ int library_contains (Library lib, Info e);
  *
  * @return NULL
  */
-Library library_clear (Library lib);
+Library library_clear(Library lib);
 
 /**
  * Finds an entry for a specific point in a library.
@@ -124,13 +124,13 @@ Library library_clear (Library lib);
  *
  * @return The found entry.
  */
-Info library_getEntry (Library lib, Point p);
+Info library_getEntry(Library lib, Point p);
 
 /**
  * Prints a library to stdout.
  *
  * @param lib The Library to be printed.
  */
-void library_print (Library lib);
+void library_print(Library lib);
 
 #endif
