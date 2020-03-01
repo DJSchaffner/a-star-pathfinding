@@ -1,2 +1,2 @@
 # pathfinding
-An A-Star pathfinding simulatior
+An A-Star pathfinding simulator
